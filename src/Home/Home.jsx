@@ -1,11 +1,25 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import Navbar from "../NavBarComp/Navbar";
 import Mymessage from "../chat_comp/Mymessage";
 import Response from "../chat_comp/Response";
 import "./home_style.css";
 import { send_and_hear_res } from "../api/send_and_hear";
+import { init } from "../api/user_operation";
+import { useNavigate } from "react-router-dom";
 
 function Home() {
+  const nav = useNavigate();
+  //intial check
+  useEffect(() => {
+    const check = async () => {
+      //console.log("cheching");
+      const move = await init();
+      if (!move) {
+        nav("/login");
+      }
+    };
+    check();
+  }, []);
   const prompt_text = useRef(null);
 
   const [chatHistory, setChatHistory] = useState([]);
@@ -18,13 +32,11 @@ function Home() {
     const newMessage = { type: "user", text: prompt };
     setChatHistory((prev) => [...prev, newMessage]);
 
-    prompt_text.current.value = ""; 
+    prompt_text.current.value = "";
     setIsLoading(true);
-
 
     const res = await send_and_hear_res(prompt);
 
- 
     if (res) {
       const aiResponse = { type: "bot", text: res };
       setChatHistory((prev) => [...prev, aiResponse]);
@@ -39,7 +51,6 @@ function Home() {
       </div>
 
       <div className="home_content">
-       
         {/* We map through the history and render the correct component */}
         {chatHistory.map((chat, index) =>
           chat.type === "user" ? (
