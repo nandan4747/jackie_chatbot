@@ -1,3 +1,16 @@
 :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
 }
+/* For Chrome, Safari, and newer versions of Edge */
+.home_content::-webkit-scrollbar {
+  display: none;
+}
+
+/* For Firefox */
+.home_content {
+  scrollbar-width: none;
+}
+
+.home_content {
+  -ms-overflow-style: none;
+}

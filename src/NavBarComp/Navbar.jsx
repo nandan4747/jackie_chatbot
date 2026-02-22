@@ -9,7 +9,7 @@ function Navbar(){
             </div>
             <div className='logo_container'>
                 
-                <img className='logo_img2' src={avatar} alt="" srcset="" />
+                <img className='logo_img2' src={avatar} alt="" />
             </div>
         </div>
     );

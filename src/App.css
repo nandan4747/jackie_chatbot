@@ -1,7 +1,15 @@
 #root {
-  
   margin: 0 auto;
-  
-  
+}
+.home_content::-webkit-scrollbar {
+  display: none;
 }
 
+/* For Firefox */
+.home_content {
+  scrollbar-width: none;
+}
+
+.home_content {
+  -ms-overflow-style: none;
+}

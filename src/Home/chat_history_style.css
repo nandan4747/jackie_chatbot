@@ -1,0 +1,44 @@
+.chat_history_container {
+  display: flex;
+  flex-direction: column;
+  
+  padding: 22px;
+
+  background: #ffffff;
+  border-radius: 18px;
+  box-shadow: 0 8px 28px rgba(0,0,0,0.08);
+  font-family: "Segoe UI", sans-serif;
+  color: #1f2937;
+  border: 1px solid #e5e7eb;
+  overflow-x: hidden;
+  max-height: 65vh;
+}
+
+.chat_history_container p {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 10px;
+  text-align: center;
+  letter-spacing: 0.4px;
+  color: #2563eb;
+ 
+}
+
+.chat_card {
+  padding: 12px 16px;
+  border-radius: 12px;
+  background: #f9fafb;
+  border: 1px solid #e5e7eb;
+  cursor: pointer;
+  transition: all 0.22s ease;
+  word-wrap:normal;
+
+  
+}
+
+.chat_card:hover {
+  transform: translateY(-2px);
+  background: #eff6ff;
+  border-color: #93c5fd;
+  box-shadow: 0 6px 16px rgba(37,99,235,0.15);
+}
