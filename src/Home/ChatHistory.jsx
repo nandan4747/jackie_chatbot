@@ -8,6 +8,7 @@ function ChatHistory() {
   useEffect(() => {
     const getMessages = async () => {
       const firstChats = await showChatSummary();
+
       if (firstChats) {
         setFistMessages(firstChats);
       }
@@ -19,7 +20,7 @@ function ChatHistory() {
     <div className="chat_history_container">
       <p>Chat History</p>
       {firstMessages.map((message) => {
-        const batch = message.batch; // Now this is legal
+        const batch = message.batch;
         return (
           <div
             className="chat_card"

@@ -14,15 +14,18 @@ async function send_and_hear_res(prompt) {
         prompt: prompt,
       }),
     });
+    if (res.status === 429) {
+      const errorData = await res.json();
+      alert(errorData.error || "Jackie is exhausted! Wait a bit.");
+      return null;
+    }
     if (res.ok) {
       const data = await res.json();
       return data.response;
     }
     return null;
   } catch (err) {
-    if (err.status === 429) {
-      alert("Whoa there! Jackie is tired. Give her a 60-second nap.");
-    }
+    console.error(err);
   }
 }
 export { send_and_hear_res };

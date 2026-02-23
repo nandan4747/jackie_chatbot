@@ -7,8 +7,8 @@
   top: 0;
   z-index: 999;
 }
-.content_holder{
-   display: flex;
+.content_holder {
+  display: flex;
 }
 .home_content {
   margin-top: 68px;
@@ -27,16 +27,23 @@
   justify-content: center;
   height: fit-content;
   gap: 1.9%;
-   z-index: 999;
+  z-index: 999;
 }
 .input_container textarea {
   width: 70%;
   border: solid 0px;
   border-radius: 16px;
-  box-shadow: 1px 3px 3px rgb(188, 188, 188);
+  box-shadow: 1px 1px 3px rgb(188, 188, 188);
   height: fit-content;
   padding: 1%;
- 
+  font-family: Arial, Helvetica, sans-serif;
+  padding: 1%;
+  border: 0.3px solid #cacaca; 
+}
+.input_container textarea:focus{
+  outline: none;
+  border: 1px solid #a647ff; 
+  box-shadow: 0 0 8px rgba(71, 209, 255, 0.3);
 }
 .input_container button {
   border: solid transparent 0px;
@@ -48,15 +55,13 @@
   align-self: center;
 }
 .history_holder {
-
   max-width: 45vw;
   max-height: 100vh;
-  margin-top:8.5%;
+  margin-top: 8.5%;
   z-index: 99;
   overflow-x: hidden;
   border-radius: 16px;
   background-color: rgb(245, 245, 245);
- 
 }
 .new_chat_btn {
   background-color: rgb(255, 255, 255);
@@ -70,6 +75,4 @@
   display: flex;
   padding-right: 4%;
   position: relative;
- 
-
 }

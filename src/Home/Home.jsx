@@ -14,6 +14,8 @@ import {
 } from "../db/db_operations";
 import ChatHistory from "./ChatHistory";
 import { useLocation } from "react-router-dom";
+import { handleKeyDown } from "../api/user_operation";
+import ThinkingAnimation from "../chat_comp/ThinkingAnimation";
 
 function Home() {
   const location = useLocation();
@@ -23,6 +25,7 @@ function Home() {
   const [isLoading, setIsLoading] = useState(false);
   const [showhistory, setShowHistory] = useState(true);
   const [batch, setbatch] = useState(0);
+  const email = localStorage.getItem("jackie_email");
 
   //intial check
   {
@@ -85,6 +88,7 @@ function Home() {
         batch: batch,
         prompt: prompt,
         response: res,
+        jackie_email: email,
       });
     }
     setIsLoading(false);
@@ -113,7 +117,6 @@ function Home() {
             zIndex: 999,
           }}
           onClick={() => {
-            console.log("clicked");
             setShowHistory(!showhistory);
           }}
         >
@@ -152,8 +155,10 @@ function Home() {
                 <div
                   className="new_chat_btn"
                   onClick={async () => {
-                    const latestbatchfromdb = await getLatestBatchId();
-                    setbatch(latestbatchfromdb + 1);
+                    let latestbatchfromdb = await getLatestBatchId();
+                    latestbatchfromdb = parseInt(latestbatchfromdb);
+                    latestbatchfromdb += 1;
+                    setbatch(latestbatchfromdb.toString());
                     setChatHistory([]);
                     setShowHistory(!showhistory);
                   }}
@@ -192,11 +197,22 @@ function Home() {
               <Response key={index} text={chat.text} />
             ),
           )}
-          {isLoading && <p>Don't disturb let me Think....</p>}
+          {isLoading && (
+            <div>
+              <ThinkingAnimation></ThinkingAnimation>
+            </div>
+          )}
         </div>
       </div>
+
       <div className="input_container">
-        <textarea ref={prompt_text} placeholder="anything in mind"></textarea>
+        <textarea
+          ref={prompt_text}
+          placeholder="anything in mind"
+          onKeyDown={(e) => {
+            handleKeyDown(e, handleSend);
+          }}
+        ></textarea>
         <button type="button" onClick={handleSend}>
           send
         </button>

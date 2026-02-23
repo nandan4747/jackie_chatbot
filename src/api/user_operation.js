@@ -1,7 +1,7 @@
 import { Hostdetails } from "./HostDetails";
 
 const login = async (formData) => {
-  console.log("loging in ");
+  
   const url = `http://${Hostdetails.ipAddress}:${Hostdetails.port}/api/v1/auth/login`;
   const res = await fetch(url, {
     method: "POST",
@@ -13,6 +13,7 @@ const login = async (formData) => {
   if (res.ok) {
     const response = await res.json();
     localStorage.setItem("jackie_token", response.token);
+    localStorage.setItem("jackie_email", formData.email);
     return response.message;
   }
 
@@ -49,11 +50,20 @@ const init = async () => {
   });
 
   if (res.ok) {
-    console.log("ok");
+    
     return true;
   }
-  console.log("not ok");
+ 
 
   return false;
 };
-export { login, register, init };
+
+const handleKeyDown = (e, send_function) => {
+  if (e.key === "Enter") {
+    if (!e.shiftKey) {
+      e.preventDefault();
+      send_function();
+    }
+  }
+};
+export { login, register, init, handleKeyDown };

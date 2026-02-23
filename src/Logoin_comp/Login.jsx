@@ -63,6 +63,17 @@ const Login = () => {
           <button type="submit" className={styles.submitBtn}>
             Jump In :)
           </button>
+
+          <p style={{
+            textAlign:"center",
+            color:"#17004d",
+            fontWeight:"600",
+            fontSize:"x-small",
+            cursor:"pointer"
+          }}
+          onClick={()=>{
+            nav("/register")
+          }}>No account ?</p>
         </form>
       </div>
     </div>

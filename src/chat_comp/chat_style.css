@@ -27,3 +27,48 @@
   box-shadow: 1px 2px 3px rgb(171, 170, 170);
   margin-top: 1%;
 }
+
+.thinking_container {
+  background-color: rgb(228, 228, 228);
+  display: flex;
+  width: fit-content;
+  border-radius: 12px;
+  gap: 20px;
+  padding-right: 12px;
+}
+
+.thinking_svg {
+  display: flex;
+  align-items: center;
+  margin-left: 12px;
+  scale: 1.5;
+  padding-top: 4px;
+}
+
+@keyframes jumping-dots {
+  0%,
+  100% {
+    cy: 12px;
+    r: 1px;
+    opacity: 0.5;
+  }
+  50% {
+    cy: 8px; /* Move up */
+    r: 2px; /* Get bigger */
+    opacity: 1;
+  }
+}
+
+.animate-dot {
+  animation: jumping-dots 1.2s infinite ease-in-out;
+}
+
+.delay-1 {
+  animation-delay: 0s;
+}
+.delay-2 {
+  animation-delay: 0.2s;
+}
+.delay-3 {
+  animation-delay: 0.4s;
+}

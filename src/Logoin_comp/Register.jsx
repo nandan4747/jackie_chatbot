@@ -72,6 +72,20 @@ const Register = () => {
             Join the Club
           </button>
         </form>
+        <p
+          style={{
+            textAlign: "center",
+            color: "#17004d",
+            fontWeight: "600",
+            fontSize: "x-small",
+            cursor: "pointer",
+          }}
+          onClick={() => {
+            nav("/login");
+          }}
+        >
+          Login
+        </p>
       </div>
     </div>
   );
