@@ -1,0 +1,135 @@
+.dashboard_container {
+  min-height: 100vh;
+  background: #f4f6fb;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "Segoe UI", sans-serif;
+}
+
+.dashboard_card {
+  width: 420px;
+  background: #ffffff;
+  padding: 30px;
+  border-radius: 18px;
+  box-shadow: 0 10px 35px rgba(0, 0, 0, 0.08);
+  border: 1px solid #e5e7eb;
+}
+
+/* PROFILE SECTION */
+.profile_section {
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+.profile_avatar {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  margin-bottom: 12px;
+  border: 3px solid #e5e7eb;
+}
+
+.profile_name {
+  margin: 5px 0;
+  font-size: 20px;
+  color: #1f2937;
+}
+
+.profile_email {
+  color: #6b7280;
+  font-size: 14px;
+}
+
+/* ACTIONS */
+.dashboard_actions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.action_btn {
+  padding: 10px;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+  transition: 0.25s ease;
+}
+
+.primary {
+  background: #2563eb;
+  color: white;
+}
+
+.primary:hover {
+  background: #1d4ed8;
+}
+
+.danger {
+  background: #ef4444;
+  color: white;
+}
+
+.danger:hover {
+  background: #dc2626;
+}
+
+.logout {
+  background: #111827;
+  color: white;
+}
+
+.logout:hover {
+  background: #000000;
+}
+
+.secondary {
+  background: #e5e7eb;
+}
+
+.secondary:hover {
+  background: #d1d5db;
+}
+
+/* MODAL */
+.modal_overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.45);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal_box {
+  width: 350px;
+  background: #ffffff;
+  padding: 25px;
+  border-radius: 14px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.modal_box input {
+  padding: 8px;
+  border-radius: 8px;
+  border: 1px solid #d1d5db;
+}
+
+.modal_buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.warning_text {
+  color: #b91c1c;
+  font-size: 14px;
+}

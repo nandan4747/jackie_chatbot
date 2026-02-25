@@ -85,6 +85,23 @@ const getLatestBatchId = async () => {
     ? uniqueBatches[uniqueBatches.length - 1]
     : "1";
 };
+
+export const deleteUserChats = async () => {
+  const email = localStorage.getItem("jackie_email");
+  try {
+    // Look for the email index and delete all matches
+    const deleteCount = await db.chats
+      .where("jackie_email")
+      .equals(email)
+      .delete();
+
+    console.log(`Successfully deleted ${deleteCount} chats for ${email}.`);
+    return true;
+  } catch (error) {
+    console.error("Failed to delete chats:", error);
+    return false;
+  }
+};
 export {
   showChatSummary,
   getBtaches,

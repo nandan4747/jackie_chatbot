@@ -1,7 +1,6 @@
 import { Hostdetails } from "./HostDetails";
 
 const login = async (formData) => {
-  
   const url = `http://${Hostdetails.ipAddress}:${Hostdetails.port}/api/v1/auth/login`;
   const res = await fetch(url, {
     method: "POST",
@@ -14,6 +13,7 @@ const login = async (formData) => {
     const response = await res.json();
     localStorage.setItem("jackie_token", response.token);
     localStorage.setItem("jackie_email", formData.email);
+    localStorage.setItem("jackie_username", response.name);
     return response.message;
   }
 
@@ -50,10 +50,8 @@ const init = async () => {
   });
 
   if (res.ok) {
-    
     return true;
   }
- 
 
   return false;
 };
@@ -66,4 +64,70 @@ const handleKeyDown = (e, send_function) => {
     }
   }
 };
-export { login, register, init, handleKeyDown };
+
+const updatePassword = async (formData) => {
+  const token = localStorage.getItem("jackie_token");
+  const url = `http://${Hostdetails.ipAddress}:${Hostdetails.port}/api/v1/auth/updatepassword`;
+
+  const payload = { ...formData, email: localStorage.getItem("jackie_email") };
+
+  try {
+    const res = await fetch(url, {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(payload),
+    });
+
+    const data = await res.json();
+
+    if (res.ok) {
+      return { success: true, message: data.message };
+    } else {
+      return { success: false, message: data.message || "Failed to update" };
+    }
+  } catch (error) {
+    console.error(error);
+    return { success: false, message: "Network error" };
+  }
+};
+const deleteAccount = async () => {
+  const email = localStorage.getItem("jackie_email");
+  const token = localStorage.getItem("jackie_token");
+  const url = `http://${Hostdetails.ipAddress}:${Hostdetails.port}/api/v1/auth/delete`;
+  try {
+    const res = await fetch(url, {
+      method: "POST",
+      headers: {
+        Authorization: "Bearer " + token,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ email: email }),
+    });
+    const data = await res.json();
+
+    if (res.ok) {
+      return { success: true, message: data.message };
+    } else {
+      return { success: false, message: data.message || "Failed to delete" };
+    }
+  } catch (error) {
+    console.error(error);
+    return { success: false, message: "Network error" };
+  }
+};
+const logout = async () => {
+  localStorage.setItem("jackie_token", " ");
+  localStorage.setItem("jackie_email", " ");
+};
+export {
+  login,
+  register,
+  init,
+  handleKeyDown,
+  updatePassword,
+  deleteAccount,
+  logout,
+};
