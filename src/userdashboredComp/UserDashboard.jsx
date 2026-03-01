@@ -4,7 +4,7 @@ import { updatePassword, deleteAccount } from "../api/user_operation";
 import { useNavigate } from "react-router-dom";
 import { deleteUserChats } from "../db/db_operations";
 import { logout } from "../api/user_operation";
-
+import Navbar from "../NavBarComp/Navbar";
 function UserDashboard() {
   const NameOfUser = localStorage.getItem("jackie_username");
   const EmailOfUser = localStorage.getItem("jackie_email");
@@ -20,7 +20,13 @@ function UserDashboard() {
   const [showDeleteModal, setShowDeleteModal] = useState(false);
 
   return (
+     <div>
+      <div className="navbar_holder">
+         <Navbar/>
+      </div>
+      
     <div className="dashboard_container">
+      
       <div className="dashboard_card">
         {/* USER PROFILE SECTION */}
         <div className="profile_section">
@@ -141,7 +147,10 @@ function UserDashboard() {
         </div>
       )}
     </div>
+
+    </div>
   );
+
 }
 
 export default UserDashboard;

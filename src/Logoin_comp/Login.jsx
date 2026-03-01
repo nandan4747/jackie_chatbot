@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import styles from "./Login.module.css"; // Importing as 'styles' object
 import { login } from "../api/user_operation";
 import { useNavigate } from "react-router-dom";
+import { DotLottieReact } from "@lottiefiles/dotlottie-react";
+import animation_data from '../assets/animation/bot_animation.json'
 
 const Login = () => {
   const nav = useNavigate();
@@ -31,8 +33,11 @@ const Login = () => {
     <div
       style={{
         display: "flex",
-        height: "100vh",
+        height:'100vh',
         alignItems: "center",
+        flexDirection:"row-reverse",
+        justifyContent:"center"
+
       }}
     >
       <div className={styles.loginContainer}>
@@ -64,18 +69,29 @@ const Login = () => {
             Jump In :)
           </button>
 
-          <p style={{
-            textAlign:"center",
-            color:"#17004d",
-            fontWeight:"600",
-            fontSize:"x-small",
-            cursor:"pointer"
-          }}
-          onClick={()=>{
-            nav("/register")
-          }}>No account ?</p>
+          <p
+            style={{
+              textAlign: "center",
+              color: "#17004d",
+              fontWeight: "600",
+              fontSize: "x-small",
+              cursor: "pointer",
+            }}
+            onClick={() => {
+              nav("/register");
+            }}
+          >
+            No account ?
+          </p>
         </form>
       </div>
+        <div className={styles.login_ani}>
+        <DotLottieReact
+        data={animation_data}
+        autoplay loop
+        ></DotLottieReact>
+      </div>
+      
     </div>
   );
 };

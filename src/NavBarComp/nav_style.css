@@ -5,11 +5,11 @@
     box-shadow: 1px 1px 3px rgb(202, 202, 202);
     display: flex;
     justify-content: space-between;
+    overflow: hidden;
 
 }
 .logo_container
 {
-   
     height: 100%;
     width: 20%;
     position: relative;
@@ -20,18 +20,62 @@
 .logo_container2
 {
    
-    height: 100%;
-    width: 20%;
-    position: relative;
-    background-color: aqua;
-    
+    width: 60px;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(255, 255, 255);
+    border-radius: 16px;
+    color: rgb(29, 16, 146);
+    margin-right: 5%;
+   
+}
+.logo_container2 :hover{
+    background-color: rgb(241, 244, 255);
+    color:rgb(16, 0, 247);
+    border-radius: 8px;
+    padding: 5%;
+    border: solid rgb(53, 53, 255) 0.5px;
+    cursor: pointer;
 }
 .logo_img
 {
     margin-top: -10px;
     height: 100px;
 }
-.logo_img2
-{
-    height: 100%;
+
+.animation_div_holder{
+    height: 60px;
+    width: 150px;
+    align-self: center;
+    transform: scale(1.5);
+    cursor: pointer;
+    width: fit-content;
+   
+    
+}
+.queue{
+    height: 65px;
+    display: flex;
+    margin-right: 45%;
+}
+.divider{
+    background-color: rgb(0, 179, 255);
+    height: 55%;
+    width: 2px;
+    align-self: center;
+    
+}
+.indicator{
+    background-color: rgb(255, 255, 255);
+    height: 60px;
+    width: 60px;
+    align-self: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color:rgb(11, 103, 190);
+    
+
 }

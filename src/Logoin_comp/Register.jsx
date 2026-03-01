@@ -2,7 +2,9 @@ import React, { useState } from "react";
 import styles from "./Login.module.css"; // Reuse your stylish shadows!
 import { register } from "../api/user_operation";
 import { useNavigate } from "react-router-dom";
-
+import { DotLottieReact } from "@lottiefiles/dotlottie-react";
+import ani from "../assets/animation/ai_animation.json";
+import cat from '../assets/animation/cat.json'
 const Register = () => {
   const nav = useNavigate();
   const [formData, setFormData] = useState({
@@ -31,61 +33,87 @@ const Register = () => {
   };
 
   return (
-    <div style={{ display: "flex", height: "100vh", alignItems: "center" }}>
-      <div className={styles.loginContainer}>
-        <h2 className={styles.welcome_text}>Create Account</h2>
-        <form onSubmit={handleSubmit}>
-          <div className={styles.inputGroup}>
-            <label>Username</label>
-            <input
-              type="text"
-              name="username"
-              value={formData.username}
-              onChange={handleChange}
-              placeholder="Your Cool Username "
-              required
-            />
-          </div>
-          <div className={styles.inputGroup}>
-            <label>Email</label>
-            <input
-              type="email"
-              name="email"
-              value={formData.email}
-              onChange={handleChange}
-              placeholder="email@example.com"
-              required
-            />
-          </div>
-          <div className={styles.inputGroup}>
-            <label>Password</label>
-            <input
-              type="password"
-              name="password"
-              value={formData.password}
-              onChange={handleChange}
-              placeholder="ur unbreakable password"
-              required
-            />
-          </div>
-          <button type="submit" className={styles.submitBtn}>
-            Join the Club
-          </button>
-        </form>
-        <p
-          style={{
-            textAlign: "center",
-            color: "#17004d",
-            fontWeight: "600",
-            fontSize: "x-small",
-            cursor: "pointer",
-          }}
-          onClick={() => {
-            nav("/login");
-          }}
-        >
-          Login
-        </p>
+    <div
+      style={{
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+      }}
+    >
+      <div style={{ display: "flex", height: "100vh", alignItems: "center" ,}}>
+        <div className={styles.loginContainer}>
+          <h2 className={styles.welcome_text}>Create Account</h2>
+          <form onSubmit={handleSubmit}>
+            <div className={styles.inputGroup}>
+              <label>Username</label>
+              <input
+                type="text"
+                name="username"
+                value={formData.username}
+                onChange={handleChange}
+                placeholder="Your Cool Username "
+                required
+              />
+            </div>
+            <div className={styles.inputGroup}>
+              <label>Email</label>
+              <input
+                type="email"
+                name="email"
+                value={formData.email}
+                onChange={handleChange}
+                placeholder="email@example.com"
+                required
+              />
+            </div>
+            <div className={styles.inputGroup}>
+              <label>Password</label>
+              <input
+                type="password"
+                name="password"
+                value={formData.password}
+                onChange={handleChange}
+                placeholder="ur unbreakable password"
+                required
+              />
+            </div>
+            <button type="submit" className={styles.submitBtn}>
+              Join the Club
+            </button>
+          </form>
+          <p
+            style={{
+              textAlign: "center",
+              color: "#17004d",
+              fontWeight: "600",
+              fontSize: "x-small",
+              cursor: "pointer",
+            }}
+            onClick={() => {
+              nav("/login");
+            }}
+          >
+            Login
+          </p>
+        </div>
+      </div>
+      <div style={{
+        
+        display:"flex",
+        flexDirection:"column",
+        justifyContent:"center"
+        
+      }}>
+        <div className={styles.reg_ani}>
+          <DotLottieReact data={ani} autoplay loop></DotLottieReact>
+        </div>
+
+        <div className={styles.cat}>
+          <DotLottieReact
+          data={cat}
+          autoplay
+          loop></DotLottieReact>
+        </div>
       </div>
     </div>
   );

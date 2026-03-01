@@ -4,12 +4,9 @@
   width: 400px;
   margin: 50px auto;
   padding: 20px;
-  border: 1px solid #ddd;
+
   border-radius: 16px;
   font-family: Arial, sans-serif;
-  box-shadow:
-    1px 1px 3px cyan,
-    -1px -1px 3px rgb(148, 148, 255);
 }
 
 .loginContainer h2 {
@@ -51,4 +48,20 @@
 
 .submitBtn:hover {
   transform: scale(1.03);
+}
+.login_ani {
+  padding-top: 3%;
+  padding-bottom: 3%;
+  background-color: rgb(245, 249, 255);
+  border-radius: 26px;
+  border: solid rgb(217, 209, 255) 0.1px;
+  transform: scale(1.1);
+}
+.reg_ani {
+  height: 50vh;
+}
+.cat {
+  width: fit-content;
+  align-self: flex-end;
+  height: 35vh;
 }
