@@ -2,11 +2,13 @@ import React, { useState } from "react";
 import styles from "./Login.module.css"; // Importing as 'styles' object
 import { login } from "../api/user_operation";
 import { useNavigate } from "react-router-dom";
-import { DotLottieReact } from "@lottiefiles/dotlottie-react";
-import animation_data from '../assets/animation/bot_animation.json'
+import { OptimizedAnimation } from "../animation_optimizer/OptimizedAnimation";
+import animation_data from "../assets/animation/bot_animation.json";
+import { Failure } from "../Notification_com/Failure";
 
 const Login = () => {
   const nav = useNavigate();
+  const [showfailedMessage, setShowFailedMessage] = useState(false);
 
   const [formData, setFormData] = useState({
     email: "",
@@ -24,8 +26,11 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const res = await login(formData);
-    if (res !== null) {
+    console.log(res);
+    if (res) {
       nav("/");
+    } else {
+      setShowFailedMessage(true);
     }
   };
 
@@ -33,11 +38,10 @@ const Login = () => {
     <div
       style={{
         display: "flex",
-        height:'100vh',
+        height: "100vh",
         alignItems: "center",
-        flexDirection:"row-reverse",
-        justifyContent:"center"
-
+        flexDirection: "row-reverse",
+        justifyContent: "center",
       }}
     >
       <div className={styles.loginContainer}>
@@ -85,13 +89,23 @@ const Login = () => {
           </p>
         </form>
       </div>
-        <div className={styles.login_ani}>
-        <DotLottieReact
-        data={animation_data}
-        autoplay loop
-        ></DotLottieReact>
+      <div className={styles.login_ani}>
+        <OptimizedAnimation data={animation_data} />
       </div>
-      
+      {showfailedMessage && (
+        <div
+          style={{
+            position: "fixed",
+            top: "15px",
+            width:"250px"
+          }}
+          onClick={() => {
+            setShowFailedMessage(false);
+          }}
+        >
+          <Failure message="invalid credentilas"></Failure>
+        </div>
+      )}
     </div>
   );
 };

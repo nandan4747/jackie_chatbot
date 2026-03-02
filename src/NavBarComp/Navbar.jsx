@@ -1,7 +1,6 @@
 import logo from "../assets/chatbot_logo.png";
 import "./nav_style.css";
-import { DotLottieReact } from "@lottiefiles/dotlottie-react";
-import animationData from "../assets/animation/navbar_animation.json";
+
 import { useNavigate, useLocation } from "react-router-dom";
 
 function Navbar() {
@@ -60,10 +59,7 @@ function Navbar() {
         onClick={() => {
           nav("/");
         }}
-      >
-        <DotLottieReact data={animationData} 
-        loop autoplay />
-      </div>
+      ></div>
       <div
         className="logo_container2"
         onClick={() => {

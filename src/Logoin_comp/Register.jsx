@@ -2,9 +2,12 @@ import React, { useState } from "react";
 import styles from "./Login.module.css"; // Reuse your stylish shadows!
 import { register } from "../api/user_operation";
 import { useNavigate } from "react-router-dom";
-import { DotLottieReact } from "@lottiefiles/dotlottie-react";
+import Lottie from "lottie-react";
 import ani from "../assets/animation/ai_animation.json";
-import cat from '../assets/animation/cat.json'
+import cat from "../assets/animation/cat.json";
+import { OptimizedAnimation } from "../animation_optimizer/OptimizedAnimation";
+import { Failure } from "../Notification_com/Failure";
+import { SuccessPop } from "../Notification_com/SuccessPop";
 const Register = () => {
   const nav = useNavigate();
   const [formData, setFormData] = useState({
@@ -12,7 +15,8 @@ const Register = () => {
     email: "",
     password: "",
   });
-
+  const [showfailedMessage, setShowFailedMessage] = useState(false);
+  const [showSuccess, setShowSeccess] = useState(false);
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
@@ -23,12 +27,16 @@ const Register = () => {
     const result = await register(formData);
 
     if (result) {
-      alert("Account created! Now go try to remember that password.");
-      nav("/login");
+      setShowFailedMessage(false);
+      setShowSeccess(true);
+
+      //nav("/login");
 
       // Logic to redirect to login would go here
     } else {
-      alert("Registration failed. Maybe that username is already taken?");
+      setShowSeccess(false);
+      setShowFailedMessage(true);
+    
     }
   };
 
@@ -40,7 +48,7 @@ const Register = () => {
         alignItems: "center",
       }}
     >
-      <div style={{ display: "flex", height: "100vh", alignItems: "center" ,}}>
+      <div style={{ display: "flex", height: "100vh", alignItems: "center" }}>
         <div className={styles.loginContainer}>
           <h2 className={styles.welcome_text}>Create Account</h2>
           <form onSubmit={handleSubmit}>
@@ -97,24 +105,50 @@ const Register = () => {
           </p>
         </div>
       </div>
-      <div style={{
-        
-        display:"flex",
-        flexDirection:"column",
-        justifyContent:"center"
-        
-      }}>
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
+        }}
+      >
         <div className={styles.reg_ani}>
-          <DotLottieReact data={ani} autoplay loop></DotLottieReact>
+          <OptimizedAnimation data={ani} />
         </div>
 
         <div className={styles.cat}>
-          <DotLottieReact
-          data={cat}
-          autoplay
-          loop></DotLottieReact>
+          <OptimizedAnimation data={cat} />
         </div>
       </div>
+      {showfailedMessage && (
+        <div
+          style={{
+            position: "fixed",
+            top: "15px",
+            width: "250px",
+          }}
+          onClick={() => {
+            setShowFailedMessage(false);
+          }}
+        >
+          <Failure message="Try another Email"></Failure>
+        </div>
+      )}
+
+      {showSuccess && (
+        <div
+          style={{
+            position: "fixed",
+            top: "15px",
+            width:"50vw",
+            maxWidth: "70vw",
+          }}
+       onClick={()=>{
+        nav("/login");
+       }} >
+          <SuccessPop message="User Registered Sucessfully , now click here to continue"></SuccessPop>
+        </div>
+      )}
     </div>
   );
 };

@@ -50,8 +50,8 @@
   transform: scale(1.03);
 }
 .login_ani {
-  padding-top: 3%;
-  padding-bottom: 3%;
+ width: 40vw;
+ height: 80vh;
   background-color: rgb(245, 249, 255);
   border-radius: 26px;
   border: solid rgb(217, 209, 255) 0.1px;
